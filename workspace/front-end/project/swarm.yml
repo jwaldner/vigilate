@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  front-end:
+   image: unixjoe/vigilate-front-end:1.0.1
+   deploy:
+      mode: replicated
+      replicas: 1
+   environment: 
+      ENV_FLAG: "DEVELOPMENT" 
+      DSN: "host=postgres port=5432 user=postgres password=password dbname=vigilate sslmode=disable timezone=UTC connect_timeout=5"
+
+  postgres:
+    image: 'postgres:14.2'
+    ports:
+      - "5432:5432"
+    deploy:
+      mode: replicated
+      replicas: 1
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: vigilate
+    volumes:
+      - ./db-data/postgres/:/var/lib/postgresql/data/
+
+volumes:
+  caddy_data:
+    external: true
+  caddy_config: 
+
+
+
+
+
+          
+
+
+
+
+
+        
+
+
+
+
+
+
