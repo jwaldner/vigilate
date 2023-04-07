@@ -30,9 +30,9 @@ build_front:
 	-pusherHost='localhost' \
 	-pusherKey='abc123' \
 	-pusherSecret='123abc' \
-	-pusherApp="1"
-	-pusherPort="4001"
-	-pusherSecure=false 
+	-pusherApp="1" \
+	-pusherPort="4001" \
+	-pusherSecure=false \ 
 	@echo "Built front end binary..."
 
 ## start: starts the front end
