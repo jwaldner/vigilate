@@ -1,17 +1,5 @@
 version: '3'
 services:
-  front-end:
-    build:
-      context: ./../front-end
-      dockerfile: ./../front-end/front-end.dockerfile
-    restart: always
-    ports:
-      - "4000:4000"
-    deploy:
-      mode: replicated
-      replicas: 1
-    environment:
-        DSN: "host=postgres port=5432 user=postgres password=password dbname=vigilate sslmode=disable timezone=UTC connect_timeout=5"   
 
   postgres:
       image: 'postgres:14.2'
@@ -26,6 +14,19 @@ services:
           POSTGRES_DB: vigilate
       volumes:
         - ./db-data/postgres/:/var/lib/postgresql/data/
+
+  front-end:
+    build:
+      context: ./../front-end
+      dockerfile: ./../front-end/front-end.dockerfile
+    restart: "no"
+    ports:
+      - "4000:4000"
+    deploy:
+      mode: replicated
+      replicas: 1
+    environment:
+      DSN: "host=postgres port=5432 user=postgres password=password dbname=vigilate sslmode=disable timezone=UTC connect_timeout=5"   
 
 
 

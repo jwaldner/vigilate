@@ -26,7 +26,9 @@ func setupApp() (*string, error) {
 	dbHost := flag.String("dbhost", "localhost", "database host")
 	dbPort := flag.String("dbport", "5432", "database port")
 	dbUser := flag.String("dbuser", "", "database user")
+	//dbPass := flag.String("dbpass", "", "database password")
 	databaseName := flag.String("db", "vigilate", "database name")
+	//dbSsl := flag.String("dbssl", "disable", "database ssl setting")
 	pusherHost := flag.String("pusherHost", "", "pusher host")
 	pusherPort := flag.String("pusherPort", "443", "pusher port")
 	pusherApp := flag.String("pusherApp", "9", "pusher app id")
@@ -38,7 +40,7 @@ func setupApp() (*string, error) {
 
 	if *dbUser == "" || *dbHost == "" || *dbPort == "" || *databaseName == "" || *identifier == "" {
 		fmt.Println("Missing required flags.")
-		os.Exit(1)
+		//os.Exit(1)
 	}
 
 	log.Println("Connecting to database....")
@@ -47,8 +49,6 @@ func setupApp() (*string, error) {
 	
 	log.Printf("my dsn from main: '%s'", dsn)
 
-	
-	
 	db := driver.ConnectToDB()
 
 	// session

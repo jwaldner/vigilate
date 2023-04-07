@@ -25,21 +25,20 @@ down:
 ## build_front: builds the front end binary
 build_front:
 	@echo "Building front end binary..."
-	cd ../front-end && go build -o ${FRONT_END_BINARY} cmd/web/*.go && ./${FRONT_END_BINARY}  \
-	-dbuser='postgres' \
-	-pusherHost='localhost' \
-	-pusherKey='abc123' \
-	-pusherSecret='123abc' \
-	-pusherApp="1" \
-	-pusherPort="4001" \
-	-pusherSecure=false \ 
+	 	cd ../front-end && go build -o  ${FRONT_END_BINARY} cmd/web/*.go 
 	@echo "Built front end binary..."
 
 ## start: starts the front end
 start: build_front
 	@echo "Starting front end"
-	./${FRONT_END_BINARY} &
-
+	cd ../front-end  && ./${FRONT_END_BINARY} \
+	-dbuser='someuser' \
+	-pusherHost='pusher.com' \
+	-pusherKey='abc123' \
+	-pusherSecret='123abc' \
+	-pusherApp="1"
+	-pusherPort="4001"
+	-pusherSecure=false;
 
 ## stop: stop the front end
 stop:
